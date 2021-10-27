@@ -1,26 +1,26 @@
 import React , {useRef, useState} from "react";
 import {Alert, Button , Card , Form} from "react-bootstrap";
-import {Link , useHistory} from "react-router-dom";
+import {Link} from "react-router-dom";
 import { useAuth } from "../Context/authContext";
 
-function SignUp(){
+function ForgotPass(){
     const emailRef = useRef();
-    const passwordRef = useRef();
-    const { login } = useAuth();
+    const { forgotPass } = useAuth();
     const [error , setError] = useState('');
+    const [message , setMessage] = useState('');
     const [loading , setLoading] = useState(false);
-    const history = useHistory();
 
     async function handleSubmit(e){
         e.preventDefault();
         try{
+            setMessage("");
             setError("");
             setLoading(true);
-            await login(emailRef.current.value , passwordRef.current.value);
-            history.push("/")
+            await forgotPass(emailRef.current.value);
+            setMessage("Check your email..")
         }
         catch{
-            setError("Failed to Sign In...");
+            setError("Failed to Reset Password...");
         }
         setLoading(false);
     }
@@ -30,19 +30,16 @@ function SignUp(){
                 <Card.Body>
                     <h1 className="text-center mb-4">Log In</h1>
                     {error && <Alert variant="danger">{error}</Alert>}
+                    {message && <Alert variant="success">{message}</Alert>}
                     <Form onSubmit={handleSubmit}>
                         <Form.Group id="email">
                             <Form.Label>Email</Form.Label>
                             <Form.Control type="email" ref={emailRef} required/>
-                        </Form.Group>
-                        <Form.Group id="password">
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control type="password" ref={passwordRef} required/>
                         </Form.Group><br/>
-                        <Button className="w-100" type="submit" disabled={loading}>Log In</Button>
+                        <Button className="w-100" type="submit" disabled={loading}>Reset Password</Button>
                     </Form>
                     <div className="w-100 text-center mt-3">
-                        <Link to="/forgot-password">Forgot Password?</Link>
+                        <Link to="/login">Login</Link>
                     </div>
                 </Card.Body>
             </Card>
@@ -53,4 +50,4 @@ function SignUp(){
     )
 }
 
-export default SignUp;
+export default ForgotPass;

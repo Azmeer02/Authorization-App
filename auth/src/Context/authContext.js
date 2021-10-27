@@ -21,6 +21,10 @@ export function AuthProvider({ children }){
         return auth.signOut();
     }
 
+    function forgotPass(email){
+        return auth.sendPasswordResetEmail(email);
+    }
+
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
           setCurrUser(user);
@@ -34,6 +38,7 @@ export function AuthProvider({ children }){
         signUp,
         login,
         logout,
+        forgotPass,
     }
 
     return(

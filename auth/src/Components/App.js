@@ -6,6 +6,7 @@ import Dashboard from "./dashboard";
 import Login from "./Login";
 import SignUp from "./signup";
 import PrivateRoute from "./privRoute";
+import ForgotPass from "./forgot-password";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
               <PrivateRoute exact="/" path = "/Dashboard" component={Dashboard}/>
               <Route path = "/Login" component={Login}></Route>
               <Route path = "/Signup" component={SignUp}></Route>
+              <Route path = "/forgot-password" component={ForgotPass}></Route>
             </Switch>
           </AuthProvider>
         </Router>
