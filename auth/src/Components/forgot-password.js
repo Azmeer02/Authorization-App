@@ -28,7 +28,7 @@ function ForgotPass(){
         <>
             <Card>
                 <Card.Body>
-                    <h1 className="text-center mb-4">Log In</h1>
+                    <h1 className="text-center mb-4">Forgot Password</h1>
                     {error && <Alert variant="danger">{error}</Alert>}
                     {message && <Alert variant="success">{message}</Alert>}
                     <Form onSubmit={handleSubmit}>
